@@ -1,6 +1,5 @@
 /**
  * Module dependencies.
- * edited PetterWe 2013-08-14
  */
 
 var express = require('express')
@@ -11,14 +10,14 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
-  app.set('port', env_variables.env.PORT || 3000);
+  app.set('port', process.env.PORT || 5000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.cookieParser(env_variables.env.COOKIE_SECRET));
+  app.use(express.cookieParser('1f93d62c876eba420ae38c797327fa65'));
   app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));

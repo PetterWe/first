@@ -1,6 +1,3 @@
-/**
- *edited by PetterWe 2013-08-14 
- */
 var request = require('request');
 
 exports.index = function(req, res, scope){
@@ -28,18 +25,19 @@ exports.index = function(req, res, scope){
         });
     } else {
         res.render('index', {
-            client_id: env_variables.env.CLIENT_ID,
+            client_id: '78e43380fc0b825052dd3fee1aec4d43',
             scope: scope,
-            redirect_uri: env_variables.env.REDIRECT_URI
+            redirect_uri: 'http://herokuurl.com/receive_code/'
         });
+    }
 };
 
 exports.receive_code = function(req, res, scope){
     if (!req.query.code) {
         res.render('error', {
-            client_id: env_variables.env.CLIENT_ID,
+            client_id: '78e43380fc0b825052dd3fee1aec4d43',
             scope: scope,
-            redirect_uri: env_variables.env.REDIRECT_URI
+            redirect_uri: 'http://herokuurl.com/receive_code/'
         });
     } else {
         // Exchange the code for a token,
@@ -47,11 +45,11 @@ exports.receive_code = function(req, res, scope){
         request.post({
             url: 'https://api.23andme.com/token/',
             form: {
-                client_id: env_variables.env.CLIENT_ID,
-                client_secret: env_variables.env.CLIENT_SECRET,
+                client_id: '78e43380fc0b825052dd3fee1aec4d43',
+                client_secret: '1f93d62c876eba420ae38c797327fa65',
                 grant_type: 'authorization_code',
                 code: req.query.code,
-                redirect_uri: env_variables.env.REDIRECT_URI,
+                redirect_uri: 'http://herokuurl.com/receive_code/',
                 scope: scope
             },
             json: true }, function(e, r, body) {
